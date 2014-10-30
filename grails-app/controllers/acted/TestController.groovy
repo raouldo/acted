@@ -80,6 +80,7 @@ class TestController {
                 [
                         signedBy: [person02]
                 ]
+        )
 
 
         render stockReceptionForm.properties
