@@ -15,6 +15,109 @@ class TestController {
     def stubStructureService
     def stubPersonService
 
+    //Pour y accéder : http://localhost:8080/acted/test/warehouse
+    def warehouse() {
+        //Création d'un warehouse
+        Warehouse warehouse = stubStructureService.createWarehouse([
+                id      : 1,
+                name    : 'warehouse 007',
+                location: 'Soudan'
+        ])
+
+        //Affichage de la vue
+        //On passe l'objet warehouse à la vue
+        render(view:'/test/warehouse', model:[warehouse:warehouse])
+    }
+
+    //Pour y accéder : http://localhost:8080/acted/test/project
+    def project() {
+        //Création d'un project
+        Project project = stubProjectService.createProject([id: 2])
+
+        //Affichage de la vue
+        //On passe l'objet projet à la vue
+        render(view:'/test/project', model:[project:project])
+    }
+
+    //Pour y accéder : http://localhost:8080/acted/test/stockReceptionForm
+    def stockReceptionForm() {
+        Warehouse warehouse = stubStructureService.createWarehouse([
+                id      : 1,
+                name    : 'warehouse 007',
+                location: 'Soudan'
+        ])
+
+        Project project = stubProjectService.createProject([id: 2])
+
+        Article article01 = stubStockService.createArticle(
+                [
+                        project : project,
+                        quantity: 2,
+                        unit    : 'l'
+                ])
+
+        Article article02 = stubStockService.createArticle(
+                [
+                        project : project,
+                        quantity: 2,
+                        unit    : 'l'
+                ])
+        Article article03 = stubStockService.createArticle(
+                [
+                        project : project,
+                        quantity: 2,
+                        unit    : 'l'
+                ])
+
+        Person person = stubPersonService.createPerson(
+                [
+                        firstName: 'Sylvain',
+                        lastName: 'Tenk',
+                        //role: RoleEnum.CAPITAL_LOGISTICS_OFFICER.toString()
+                ])
+
+        StockReceptionForm stockReceptionForm = stubStockService.createStockReceptionForm(
+                [
+                        id              : 12,
+                        //type            : FormEnum.STOCK_RECEPTION.toString(),
+                        dateCreated     : new Date(),
+                        completedBy     : [person],
+                        driverFirstName : 'Felipe',
+                        driverLastName  : 'Felipe',
+                        driverNumber    : 48541,
+
+                        vehiculeNumber  : 21584,
+                        deliveryLocation: warehouse,
+
+                        articles        : [article01, article02, article03]
+                ]
+        )
+
+        Person person02 = stubPersonService.createPerson(
+                [
+                        firstName: 'Otto',
+                        lastName: 'Rastapopoulos',
+                        //role: RoleEnum.CAPITAL_LOGISTICS_OFFICER.toString()
+                ])
+
+        stockReceptionForm = stubStockService.updateStockReceptionForm(stockReceptionForm,
+                [
+                        signedBy: [person02]
+                ]
+        )
+
+        if (stockReceptionForm.signedBy.contains(person02)) {
+            // Validation of the form
+            stubStockService.validateReceptionForm(stockReceptionForm)
+
+            // Adding articles to the physical stock
+            stubStockService.stockIn(stockReceptionForm)
+        }
+
+        //Ici affichage, on retourne la variable : stockReceptionForm
+        render(view:'/test/stockReceptionForm', model:[stockReceptionForm:stockReceptionForm])
+    }
+
     def createStockReceptionForm() {
 
         Warehouse warehouse = stubStructureService.createWarehouse([
