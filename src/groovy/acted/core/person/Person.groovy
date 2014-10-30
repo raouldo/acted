@@ -10,6 +10,6 @@ class Person {
     String firstName
     String lastName
 
-    RoleEnum role
+    String role
 
 }

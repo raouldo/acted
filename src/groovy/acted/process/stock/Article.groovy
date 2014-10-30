@@ -15,7 +15,7 @@ class Article {
 
     String packaging
     String weightOrVolume
-    String quantity
+    Long quantity
     String unit
 
     String remarks

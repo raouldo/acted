@@ -1,9 +1,7 @@
 package acted.form
 
-import acted.Item
-import acted.core.person.Person
+import acted.process.stock.Article
 import acted.structure.Warehouse
-
 
 /**
  * Created by raoul on 30/10/14.
@@ -21,6 +19,6 @@ class StockReceptionForm extends Form {
 
     Warehouse deliveryLocation
 
-    ArrayList<Item> items
+    ArrayList<Article> articles
 
 }

@@ -7,7 +7,7 @@ import acted.core.person.Person
  */
 class Form {
 
-    Long number
+    Long id
 
     // From FormEnum enum
     String type
