@@ -21,4 +21,6 @@ class StockReceptionForm extends Form {
 
     ArrayList<Article> articles
 
+    String status
+
 }

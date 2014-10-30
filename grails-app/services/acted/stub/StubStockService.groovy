@@ -46,6 +46,15 @@ class StubStockService implements StockInterface {
         return true
     }
 
+    StockReceptionForm validateReceptionForm(StockReceptionForm stockReceptionForm) {
+
+        //Check pre-conditions here...
+
+        stockReceptionForm.status = 'Validated'
+
+        return stockReceptionForm
+    }
+
     Article createArticle(Map properties) {
         Article article = new Article()
 
@@ -77,7 +86,7 @@ class StubStockService implements StockInterface {
         return true
     }
 
-    boolean stockIn(Article article) {
+    boolean stockIn(StockReceptionForm validatedReceptionForm) {
         return true
     }
 

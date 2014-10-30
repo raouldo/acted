@@ -1,5 +1,6 @@
 package acted
 
+import acted.service.StockService
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

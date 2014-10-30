@@ -27,6 +27,10 @@ class StockService implements StockInterface {
 
     }
 
+    StockReceptionForm validateReceptionForm(StockReceptionForm stockReceptionForm) {
+        return stockReceptionForm
+    }
+
     Article createArticle(Map properties) {
 
     }
@@ -43,13 +47,12 @@ class StockService implements StockInterface {
 
     }
 
-
     // Return true if Stock Reception Form has been deleted properly
     boolean deleteStockReceptionForm(Long id) {
         return true
     }
 
-    boolean stockIn(Article article) {
+    boolean stockIn(StockReceptionForm validatedReceptionForm) {
         return true
     }
 

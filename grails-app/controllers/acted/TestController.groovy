@@ -82,8 +82,15 @@ class TestController {
                 ]
         )
 
+        if (stockReceptionForm.signedBy.contains(person02)) {
+            // Validation of the form
+            stubStockService.validateReceptionForm(stockReceptionForm)
 
-        render stockReceptionForm.properties
+            // Adding articles to the physical stock
+            stubStockService.stockIn(stockReceptionForm)
+        }
+
+        render "${stockReceptionForm.properties}"
     }
 
     def readStockReceptionForm() {

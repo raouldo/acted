@@ -27,7 +27,9 @@ interface StockInterface {
 	// Return true if Stock Reception Form has been deleted properly
 	boolean deleteStockReceptionForm(Long id)
 
-	boolean stockIn(Article article)
+	StockReceptionForm validateReceptionForm(StockReceptionForm stockReceptionForm)
+
+	boolean stockIn(StockReceptionForm validatedReceptionForm)
 
 	boolean stockOut(Article article)
 
