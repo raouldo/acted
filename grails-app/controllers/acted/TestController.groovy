@@ -115,7 +115,7 @@ class TestController {
         }
 
         //Ici affichage, on retourne la variable : stockReceptionForm
-        render(view:'/test/stockReceptionForm', model:[stockReceptionForm:stockReceptionForm])
+        render(view:'/STO/stockReceptionForm', model:[stockReceptionForm:stockReceptionForm])
     }
 
     def createStockReceptionForm() {
