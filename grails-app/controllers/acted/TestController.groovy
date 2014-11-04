@@ -1,5 +1,6 @@
 package acted
 
+import acted.command.CreateProjectCommand
 import acted.core.Project
 import acted.core.person.Person
 import acted.core.security.RoleEnum
@@ -213,8 +214,21 @@ class TestController {
         render stubStockService.deleteStockReceptionForm(18)
     }
 
-    def createProject() {
-        Project project = stubProjectService.createProject([id: 12])
+    def createProject(CreateProjectCommand cmd) {
+        // il faut que chaque élément de formulaire dans la vue possède la propriété "name" avec le noms de la propriété correspondante
+        // pour que le binding automatique fonctionne.
+
+        Project project
+
+        if (cmd.hasErrors()) {
+
+            // Ici on traite les erreurs...
+
+        } else {
+
+            // S'il n'y a pas d'erreur, on créé l'objet.
+            project = stubProjectService.createProject([id: cmd.id])
+        }
 
         render project.id
     }
