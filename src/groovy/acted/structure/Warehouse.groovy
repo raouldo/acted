@@ -5,8 +5,8 @@ package acted.structure
  */
 class Warehouse {
 
-    Long id
-    String name
-    String location
+	Long id
+	String name
 
+	String location
 }

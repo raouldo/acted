@@ -1,26 +1,31 @@
 package acted.form
 
+import acted.core.person.Person
 import acted.process.stock.Article
-import acted.structure.Warehouse
 
 /**
  * Created by raoul on 30/10/14.
  */
 class StockReceptionForm extends Form {
 
-    //Why this item should be delivered?
-    Form contract
+	//Why this item should be delivered?
+	Form contract
 
-    String driverFirstName
-    String driverLastName
-    Long driverNumber
+	String driverFirstName
+	String driverLastName
 
-    Long vehiculeNumber
+	String consignorFirstName
+	String consignorLastName
 
-    Warehouse deliveryLocation
+	Long driverNumber
 
-    ArrayList<Article> articles
+	Long vehiculeNumber
 
-    String status
+	String deliveryLocation
+	String receivingLocation
+
+	ArrayList<Article> articles
+
+	String status
 
 }
