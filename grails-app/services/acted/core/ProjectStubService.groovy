@@ -1,4 +1,4 @@
-package acted.stub
+package acted.core
 
 import acted.core.Project
 import acted.core.ProjectInterface
@@ -6,7 +6,7 @@ import acted.exception.ProjectException
 import grails.transaction.Transactional
 
 @Transactional
-class StubProjectService implements ProjectInterface {
+class ProjectStubService implements ProjectInterface {
 
     Project createProject(Map properties) {
         Project project = new Project()

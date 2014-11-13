@@ -1,6 +1,6 @@
 package acted
 
-import acted.service.StockService
+import acted.process.StockService
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

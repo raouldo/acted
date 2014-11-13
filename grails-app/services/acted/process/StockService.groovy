@@ -1,6 +1,5 @@
-package acted.service
+package acted.process
 
-import acted.core.StockInterface
 import acted.exception.StockException
 import acted.form.StockReceptionForm
 import acted.process.stock.Article

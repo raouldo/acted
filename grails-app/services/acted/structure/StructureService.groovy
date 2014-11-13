@@ -1,6 +1,6 @@
-package acted.service
+package acted.structure
 
-import acted.core.StructureInterface
+import acted.structure.StructureInterface
 import acted.structure.Warehouse
 import grails.transaction.Transactional
 

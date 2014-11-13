@@ -1,11 +1,11 @@
-package acted.stub
+package acted.structure
 
-import acted.core.StructureInterface
+import acted.structure.StructureInterface
 import acted.structure.Warehouse
 import grails.transaction.Transactional
 
 @Transactional
-class StubStructureService implements acted.core.StructureInterface {
+class StructureStubService implements StructureInterface {
 
     Warehouse createWarehouse(Map properties) {
         Warehouse warehouse = new Warehouse()

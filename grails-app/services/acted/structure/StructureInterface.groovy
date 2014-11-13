@@ -1,4 +1,4 @@
-package acted.core
+package acted.structure
 
 import acted.structure.Warehouse
 

@@ -1,4 +1,4 @@
-package acted.core
+package acted.core.person
 
 import acted.core.person.Person
 

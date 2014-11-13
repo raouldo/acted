@@ -1,4 +1,4 @@
-package acted.core
+package acted.process
 
 import acted.exception.StockException
 import acted.form.StockReceptionForm

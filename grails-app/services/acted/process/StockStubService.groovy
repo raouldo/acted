@@ -1,13 +1,12 @@
-package acted.stub
+package acted.process
 
-import acted.core.StockInterface
 import acted.exception.StockException
 import acted.form.StockReceptionForm
 import acted.process.stock.Article
 import grails.transaction.Transactional
 
 @Transactional
-class StubStockService implements StockInterface {
+class StockStubService implements StockInterface {
 
     boolean testMethod() {
         return true

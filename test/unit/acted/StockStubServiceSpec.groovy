@@ -1,14 +1,14 @@
 package acted
 
-import acted.stub.StubStockService
+import acted.process.StockStubService
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(StubStockService)
-class StubStockServiceSpec extends Specification {
+@TestFor(StockStubService)
+class StockStubServiceSpec extends Specification {
 
     def setup() {
     }

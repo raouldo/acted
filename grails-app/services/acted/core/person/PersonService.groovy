@@ -1,11 +1,9 @@
-package acted.stub
+package acted.core.person
 
-import acted.core.PersonInterface
-import acted.core.person.Person
 import grails.transaction.Transactional
 
 @Transactional
-class StubPersonService implements PersonInterface {
+class PersonService implements PersonInterface {
 
     Person createPerson(properties) {
         Person person = new Person()

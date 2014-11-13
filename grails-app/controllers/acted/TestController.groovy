@@ -9,15 +9,15 @@ import acted.structure.Warehouse
 
 class TestController {
 
-	def stubProjectService
-	def stubStockService
-	def stubStructureService
-	def stubPersonService
+	def projectStubService
+	def stockStubService
+	def structureStubService
+	def personStubService
 
 	//Pour y accéder : http://localhost:8080/acted/test/warehouse
 	def warehouse() {
 		//Création d'un warehouse
-		Warehouse warehouse = stubStructureService.createWarehouse([
+		Warehouse warehouse = structureStubService.createWarehouse([
 			id      : 1,
 			name    : 'warehouse 007',
 			location: 'Soudan'
@@ -31,7 +31,7 @@ class TestController {
 	//Pour y accéder : http://localhost:8080/acted/test/project
 	def project() {
 		//Création d'un project
-		Project project = stubProjectService.createProject([id: 2])
+		Project project = projectStubService.createProject([id: 2])
 
 		//Affichage de la vue
 		//On passe l'objet projet à la vue
@@ -40,42 +40,42 @@ class TestController {
 
 	//Pour y accéder : http://localhost:8080/acted/test/stockReceptionForm
 	def stockReceptionForm() {
-		Warehouse warehouse = stubStructureService.createWarehouse([
+		Warehouse warehouse = structureStubService.createWarehouse([
 			id      : 1,
 			name    : 'warehouse 007',
 			location: 'Soudan'
 		])
 
-		Project project = stubProjectService.createProject([id: 2])
+		Project project = projectStubService.createProject([id: 2])
 
-		Article article01 = stubStockService.createArticle(
+		Article article01 = stockStubService.createArticle(
 				[
 					project : project,
 					quantity: 2,
 					unit    : 'l'
 				])
 
-		Article article02 = stubStockService.createArticle(
+		Article article02 = stockStubService.createArticle(
 				[
 					project : project,
 					quantity: 2,
 					unit    : 'l'
 				])
-		Article article03 = stubStockService.createArticle(
+		Article article03 = stockStubService.createArticle(
 				[
 					project : project,
 					quantity: 2,
 					unit    : 'l'
 				])
 
-		Person person = stubPersonService.createPerson(
+		Person person = personStubService.createPerson(
 				[
 					firstName: 'Sylvain',
 					lastName: 'Tenk',
 					//role: RoleEnum.CAPITAL_LOGISTICS_OFFICER.toString()
 				])
 
-		StockReceptionForm stockReceptionForm = stubStockService.createStockReceptionForm(
+		StockReceptionForm stockReceptionForm = stockStubService.createStockReceptionForm(
 				[
 					id              : 12,
 					//type            : FormEnum.STOCK_RECEPTION.toString(),
@@ -91,24 +91,24 @@ class TestController {
 					articles        : [article01, article02, article03]]
 				)
 
-		Person person02 = stubPersonService.createPerson(
+		Person person02 = personStubService.createPerson(
 				[
 					firstName: 'Otto',
 					lastName: 'Rastapopoulos',
 					//role: RoleEnum.CAPITAL_LOGISTICS_OFFICER.toString()
 				])
 
-		stockReceptionForm = stubStockService.updateStockReceptionForm(stockReceptionForm,
+		stockReceptionForm = stockStubService.updateStockReceptionForm(stockReceptionForm,
 				[
 					signedBy: [person02]]
 				)
 
 		if (stockReceptionForm.signedBy.contains(person02)) {
 			// Validation of the form
-			stubStockService.validateReceptionForm(stockReceptionForm)
+			stockStubService.validateReceptionForm(stockReceptionForm)
 
 			// Adding articles to the physical stock
-			stubStockService.stockIn(stockReceptionForm)
+			stockStubService.stockIn(stockReceptionForm)
 		}
 
 		//Ici affichage, on retourne la variable : stockReceptionForm
@@ -117,42 +117,42 @@ class TestController {
 
 	def createStockReceptionForm() {
 
-		Warehouse warehouse = stubStructureService.createWarehouse([
+		Warehouse warehouse = structureStubService.createWarehouse([
 			id      : 1,
 			name    : 'warehouse 007',
 			location: 'Soudan'
 		])
 
-		Project project = stubProjectService.createProject([id: 2])
+		Project project = projectStubService.createProject([id: 2])
 
-		Article article01 = stubStockService.createArticle(
+		Article article01 = stockStubService.createArticle(
 				[
 					project : project,
 					quantity: 2,
 					unit    : 'l'
 				])
 
-		Article article02 = stubStockService.createArticle(
+		Article article02 = stockStubService.createArticle(
 				[
 					project : project,
 					quantity: 2,
 					unit    : 'l'
 				])
-		Article article03 = stubStockService.createArticle(
+		Article article03 = stockStubService.createArticle(
 				[
 					project : project,
 					quantity: 2,
 					unit    : 'l'
 				])
 
-		Person person = stubPersonService.createPerson(
+		Person person = personStubService.createPerson(
 				[
 					firstName: 'Sylvain',
 					lastName: 'Tenk',
 					//role: RoleEnum.CAPITAL_LOGISTICS_OFFICER.toString()
 				])
 
-		StockReceptionForm stockReceptionForm = stubStockService.createStockReceptionForm(
+		StockReceptionForm stockReceptionForm = stockStubService.createStockReceptionForm(
 				[
 					id              : 12,
 					//type            : FormEnum.STOCK_RECEPTION.toString(),
@@ -168,44 +168,44 @@ class TestController {
 					articles        : [article01, article02, article03]]
 				)
 
-		Person person02 = stubPersonService.createPerson(
+		Person person02 = personStubService.createPerson(
 				[
 					firstName: 'Otto',
 					lastName: 'Rastapopoulos',
 					//role: RoleEnum.CAPITAL_LOGISTICS_OFFICER.toString()
 				])
 
-		stockReceptionForm = stubStockService.updateStockReceptionForm(stockReceptionForm,
+		stockReceptionForm = stockStubService.updateStockReceptionForm(stockReceptionForm,
 				[
 					signedBy: [person02]]
 				)
 
 		if (stockReceptionForm.signedBy.contains(person02)) {
 			// Validation of the form
-			stubStockService.validateReceptionForm(stockReceptionForm)
+			stockStubService.validateReceptionForm(stockReceptionForm)
 
 			// Adding articles to the physical stock
-			stubStockService.stockIn(stockReceptionForm)
+			stockStubService.stockIn(stockReceptionForm)
 		}
 
 		render "${stockReceptionForm.properties}"
 	}
 
 	def readStockReceptionForm() {
-		StockReceptionForm stockReceptionForm = stubStockService.readStockReceptionForm(13)
+		StockReceptionForm stockReceptionForm = stockStubService.readStockReceptionForm(13)
 
 		render stockReceptionForm.properties
 	}
 
 	def updateStockReceptionForm() {
-		StockReceptionForm stockReceptionForm = stubStockService.createStockReceptionForm([id: 12])
-		stockReceptionForm = stubStockService.updateStockReceptionForm(stockReceptionForm, [id: 15])
+		StockReceptionForm stockReceptionForm = stockStubService.createStockReceptionForm([id: 12])
+		stockReceptionForm = stockStubService.updateStockReceptionForm(stockReceptionForm, [id: 15])
 
 		render stockReceptionForm.properties
 	}
 
 	def deleteStockReceptionForm() {
-		render stubStockService.deleteStockReceptionForm(18)
+		render stockStubService.deleteStockReceptionForm(18)
 	}
 
 	def createProject(CreateProjectCommand cmd) {
@@ -221,26 +221,26 @@ class TestController {
 		} else {
 
 			// S'il n'y a pas d'erreur, on créé l'objet.
-			project = stubProjectService.createProject([id: cmd.id])
+			project = projectStubService.createProject([id: cmd.id])
 		}
 
 		render project.id
 	}
 
 	def readProject() {
-		Project project = stubProjectService.readProject(15)
+		Project project = projectStubService.readProject(15)
 
 		render project.id
 	}
 
 	def updateProject() {
-		Project project = stubProjectService.createProject([id: 12])
-		project = stubProjectService.updateProject(project, [id: 15])
+		Project project = projectStubService.createProject([id: 12])
+		project = projectStubService.updateProject(project, [id: 15])
 
 		render project.id
 	}
 
 	def deleteProject() {
-		render stubProjectService.deleteProject(18)
+		render projectStubService.deleteProject(18)
 	}
 }

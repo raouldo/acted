@@ -6,7 +6,7 @@ grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
-grails.plugin.location.'presentation' = "../presentation/presentation"
+grails.plugin.location.'presentation' = "/home/raoul/projects/rapidlabs/presentation/presentation"
 
 grails.project.fork = [
 	// configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
@@ -52,6 +52,11 @@ grails.project.dependency.resolution = {
 		// runtime 'mysql:mysql-connector-java:5.1.29'
 		// runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 		test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+
+		compile 'org.projectreactor:reactor-groovy:1.0.0.RELEASE'
+		compile ('org.projectreactor:reactor-spring:1.0.0.RELEASE'){
+			excludes 'spring-core','spring-expression','spring-beans','spring-context','spring-context-support'
+		}
 	}
 
 	plugins {
