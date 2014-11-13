@@ -10,10 +10,10 @@ import acted.structure.Warehouse
 
 class StockReceptionController {
 
-	def stubProjectService
-	def stubStockService
-	def stubStructureService
-	def stubPersonService
+	def projectStubService
+	def stockStubService
+	def structureStubService
+	def personStubService
 
 	def examplesService
 
@@ -54,17 +54,17 @@ class StockReceptionController {
 		Person person02 = examplesService.simuPerson(1)
 
 
-		stockReceptionForm = stubStockService.updateStockReceptionForm(stockReceptionForm,
+		stockReceptionForm = stockStubService.updateStockReceptionForm(stockReceptionForm,
 				[
 					signedBy: [person02]]
 				)
 
 		if (stockReceptionForm.signedBy.contains(person02)) {
 			// Validation of the form
-			stubStockService.validateReceptionForm(stockReceptionForm)
+			stockStubService.validateReceptionForm(stockReceptionForm)
 
 			// Adding articles to the physical stock
-			stubStockService.stockIn(stockReceptionForm)
+			stockStubService.stockIn(stockReceptionForm)
 		}
 
 		//Ici affichage, on retourne la variable : stockReceptionForm
@@ -88,37 +88,37 @@ class StockReceptionController {
 		Person person02 = examplesService.simuPerson(1)
 
 
-		stockReceptionForm = stubStockService.updateStockReceptionForm(stockReceptionForm,
+		stockReceptionForm = stockStubService.updateStockReceptionForm(stockReceptionForm,
 				[
 					signedBy: [person02]]
 				)
 
 		if (stockReceptionForm.signedBy.contains(person02)) {
 			// Validation of the form
-			stubStockService.validateReceptionForm(stockReceptionForm)
+			stockStubService.validateReceptionForm(stockReceptionForm)
 
 			// Adding articles to the physical stock
-			stubStockService.stockIn(stockReceptionForm)
+			stockStubService.stockIn(stockReceptionForm)
 		}
 
 		render "${stockReceptionForm.properties}"
 	}
 
 	def readStockReceptionForm() {
-		StockReceptionForm stockReceptionForm = stubStockService.readStockReceptionForm(13)
+		StockReceptionForm stockReceptionForm = stockStubService.readStockReceptionForm(13)
 
 		render stockReceptionForm.properties
 	}
 
 	def updateStockReceptionForm() {
-		StockReceptionForm stockReceptionForm = stubStockService.createStockReceptionForm([id: 12])
-		stockReceptionForm = stubStockService.updateStockReceptionForm(stockReceptionForm, [id: 15])
+		StockReceptionForm stockReceptionForm = stockStubService.createStockReceptionForm([id: 12])
+		stockReceptionForm = stockStubService.updateStockReceptionForm(stockReceptionForm, [id: 15])
 
 		render stockReceptionForm.properties
 	}
 
 	def deleteStockReceptionForm() {
-		render stubStockService.deleteStockReceptionForm(18)
+		render stockStubService.deleteStockReceptionForm(18)
 	}
 
 }
