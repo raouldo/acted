@@ -1,6 +1,4 @@
-package acted.process.stock.workflow
-
-import acted.process.workflow.Step
+package acted.process.workflow
 
 /**
  * Created by raoul on 30/10/14.
