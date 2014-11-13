@@ -8,16 +8,16 @@ import acted.structure.Warehouse
 
 class ExamplesService {
 
-	def stubProjectService
-	def stubStockService
-	def stubStructureService
-	def stubPersonService
+	def projectStubService
+	def stockStubService
+	def structureStubService
+	def personStubService
 
 	def serviceMethod() {
 	}
 
 	def simuWarehouse(){
-		Warehouse warehouse = stubStructureService.createWarehouse([
+		Warehouse warehouse = structureStubService.createWarehouse([
 			id      : 1,
 			name    : 'warehouse 007',
 			location: 'Soudan'
@@ -25,7 +25,7 @@ class ExamplesService {
 		return warehouse
 	}
 	def simuWarehouse2(){
-		Warehouse warehouse = stubStructureService.createWarehouse([
+		Warehouse warehouse = structureStubService.createWarehouse([
 			id      : 1,
 			name    : 'warehouse 007',
 			location: 'Soudan'
@@ -34,13 +34,13 @@ class ExamplesService {
 	}
 
 	def simuProject(){
-		Project project = stubProjectService.createProject([id: 2])
+		Project project = projectStubService.createProject([id: 2])
 		return project
 	}
 
 	def simuArticle(){
 
-		Article article = stubStockService.createArticle(
+		Article article = stockStubService.createArticle(
 				[
 					project : this.simuProject(),
 					quantity: 2,
@@ -62,7 +62,7 @@ class ExamplesService {
 			firstName='Tommy';
 			lastName='Hanks';
 		}
-		Person person = stubPersonService.createPerson(
+		Person person = personStubService.createPerson(
 				[
 					firstName: firstName,
 					lastName: lastName,
@@ -72,7 +72,7 @@ class ExamplesService {
 
 	def simuStockReceptionForm(){
 		Person consignor = simuPerson(2)
-		StockReceptionForm stockReceptionForm = stubStockService.createStockReceptionForm(
+		StockReceptionForm stockReceptionForm = stockStubService.createStockReceptionForm(
 				[	id              : 12,
 					//type            : FormEnum.STOCK_RECEPTION.toString(),
 					dateCreated     : new Date(),
