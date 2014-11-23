@@ -6,7 +6,11 @@ grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
+
+// Configuration de Acted
 grails.plugin.location.'presentation' = "../presentation/presentation"
+grails.plugin.springsecurity.useSessionFixationPrevention = true
+
 
 grails.project.fork = [
 	// configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
@@ -45,12 +49,14 @@ grails.project.dependency.resolution = {
 		//mavenRepo "http://repository.codehaus.org"
 		//mavenRepo "http://download.java.net/maven/2/"
 		//mavenRepo "http://repository.jboss.com/maven2/"
+		mavenRepo 'http://repo.spring.io/milestone'
 	}
 
 	dependencies {
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 		// runtime 'mysql:mysql-connector-java:5.1.29'
 		// runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
+		runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
 		test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
 
 		compile 'org.projectreactor:reactor-groovy:1.0.0.RELEASE'
@@ -67,10 +73,7 @@ grails.project.dependency.resolution = {
 		compile ":scaffolding:2.1.2"
 		compile ':cache:1.1.8'
 		compile ":asset-pipeline:1.9.9"
-
-		/* Plugin Web du projet Acted */
-		//		compile ":presentation:0.1"
-		//		grails.plugin.location.'presentation' = "../presentation/presentation"
+		compile ":spring-security-core:2.0-RC4"
 
 		// plugins needed at runtime but not for compilation
 		runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"

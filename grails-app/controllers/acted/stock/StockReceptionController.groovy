@@ -1,5 +1,6 @@
 package acted.stock
 
+import grails.converters.JSON
 import acted.core.Project
 import acted.core.person.Person
 import acted.form.StockReceptionForm
@@ -10,6 +11,29 @@ import acted.structure.Warehouse
 
 class StockReceptionController {
 
+	//	def beforeInterceptor = [action:this.&checkUser,except:
+	//		['index', 'list', 'show']]
+	//	def scaffold = true
+	//	def checkUser() {
+	//		if(!session.user) {
+	//			// i.e. user not logged in
+	//			redirect(controller:'user',action:'login')
+	//			return false
+	//		}
+	//	}
+
+
+	//	def authenticationService
+	//	def onlyLoggedInUsers = {
+	//		if (!authenticationService.isLoggedIn(request)) {
+	//			// Redirect or return Forbidden
+	//			response.sendError(403)
+	//		} else {
+	//			// do something
+	//		}
+	//	}
+
+
 	def projectStubService
 	def stockStubService
 	def structureStubService
@@ -17,7 +41,6 @@ class StockReceptionController {
 
 	def examplesService
 
-	//Pour y accéder : http://localhost:8080/acted/test/warehouse
 	def warehouse() {
 		//Création d'un warehouse
 		Warehouse warehouse = examplesService.simuWarehouse()
@@ -27,7 +50,6 @@ class StockReceptionController {
 		render(view:'/test/warehouse', model:[warehouse:warehouse])
 	}
 
-	//Pour y accéder : http://localhost:8080/acted/test/project
 	def project() {
 		//Création d'un project
 		Project project = examplesService.simuProject()
@@ -37,22 +59,11 @@ class StockReceptionController {
 		render(view:'/test/project', model:[project:project])
 	}
 
-	//Pour y accéder : http://localhost:8080/acted/test/stockReceptionForm
 	def index() {
-		Warehouse warehouse = examplesService.simuWarehouse()
-
-		Project project = examplesService.simuProject()
-
-		Article article01 = examplesService.simuArticle()
-		Article article02 = examplesService.simuArticle()
-		Article article03 = examplesService.simuArticle()
-
-		Person person = examplesService.simuPerson(0)
 
 		StockReceptionForm stockReceptionForm = examplesService.simuStockReceptionForm()
 
 		Person person02 = examplesService.simuPerson(1)
-
 
 		stockReceptionForm = stockStubService.updateStockReceptionForm(stockReceptionForm,
 				[
@@ -67,8 +78,14 @@ class StockReceptionController {
 			stockStubService.stockIn(stockReceptionForm)
 		}
 
+		String listLineTableSRF = stockReceptionForm.getListLineTableSRF()
+
 		//Ici affichage, on retourne la variable : stockReceptionForm
 		render(view:'/STO/stockReceptionForm', model:[stockReceptionForm:stockReceptionForm])
+	}
+
+	def indexJSON() {
+		render examplesService.simuListLineTableSRF() as JSON
 	}
 
 	def createStockReceptionForm() {
@@ -120,5 +137,4 @@ class StockReceptionController {
 	def deleteStockReceptionForm() {
 		render stockStubService.deleteStockReceptionForm(18)
 	}
-
 }
